@@ -1,0 +1,45 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Calendar
+    style.
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th, td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+  body
+    h1 Monthly Calendar
+    table
+      thead
+        tr
+          each day in ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+            th= day
+      tbody
+        - let daysInMonth = 31; // You can calculate this dynamically based on the current month
+        - let startDay = 3; // You can calculate this dynamically based on the current month's starting day
+        - let currentDay = 1;
+        - let rows = Math.ceil((startDay + daysInMonth) / 7);
+        - for (let i = 0; i < rows; i++) {
+          tr
+            - for (let j = 0; j < 7; j++) {
+              - if (i === 0 && j < startDay) {
+                td
+              - else if (currentDay > daysInMonth) {
+                td
+              - else {
+                td= currentDay++
+              }
+            - }
+        - }
+            }
+        }
